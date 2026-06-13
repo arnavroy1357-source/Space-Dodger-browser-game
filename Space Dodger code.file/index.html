@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Space Dodger</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <canvas id="starfield"></canvas>
+    <canvas id="gameCanvas"></canvas>
+
+    <div id="hud" class="hidden">
+      <div class="hud-left">
+        <div class="hud-stat">
+          <span class="hud-label">SCORE</span>
+          <span class="hud-value" id="hudScore">0</span>
+        </div>
+        <div class="hud-stat">
+          <span class="hud-label">BEST</span>
+          <span class="hud-value accent-purple" id="hudHigh">0</span>
+        </div>
+      </div>
+      <div class="hud-center">
+        <div id="levelBadge" class="level-badge">
+          LVL <span id="hudLevel">1</span>
+        </div>
+      </div>
+      <div class="hud-right">
+        <button id="pauseBtn" class="icon-btn" title="Pause (P)">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <rect x="6" y="4" width="4" height="16" />
+            <rect x="14" y="4" width="4" height="16" />
+          </svg>
+        </button>
+        <button id="soundBtn" class="icon-btn" title="Toggle Sound">
+          <svg id="soundIcon" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"
+            />
+          </svg>
+        </button>
+      </div>
+      <div id="powerupBar" class="powerup-bar"></div>
+    </div>
+
+    <!-- START SCREEN -->
+    <div id="startScreen" class="screen">
+      <div class="screen-panel">
+        <div class="game-logo">
+          <span class="logo-space">SPACE</span>
+          <span class="logo-dodger">DODGER</span>
+        </div>
+        <p class="tagline">Survive the void. Outrun the rocks.</p>
+        <div class="controls-hint">
+          <div class="hint-row">
+            <kbd>←</kbd><kbd>→</kbd><span>or</span><kbd>A</kbd><kbd>D</kbd>
+            <span>Move</span>
+          </div>
+          <div class="hint-row"><kbd>P</kbd><span>Pause</span></div>
+        </div>
+        <div id="statsPanel" class="stats-panel">
+          <div class="stat-item">
+            <span class="stat-label">HIGH SCORE</span>
+            <span class="stat-val" id="statHigh">0</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">GAMES PLAYED</span>
+            <span class="stat-val" id="statGames">0</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">BEST TIME</span>
+            <span class="stat-val" id="statBestTime">0s</span>
+          </div>
+        </div>
+        <button id="startBtn" class="btn btn-primary">LAUNCH MISSION</button>
+      </div>
+    </div>
+
+    <!-- PAUSED SCREEN -->
+    <div id="pauseScreen" class="screen hidden">
+      <div class="screen-panel screen-panel--sm">
+        <h2 class="screen-title">PAUSED</h2>
+        <button id="resumeBtn" class="btn btn-primary">RESUME</button>
+        <button id="quitBtn" class="btn btn-secondary">QUIT TO MENU</button>
+      </div>
+    </div>
+
+    <!-- GAME OVER SCREEN -->
+    <div id="gameOverScreen" class="screen hidden">
+      <div class="screen-panel">
+        <h2 class="screen-title screen-title--danger">GAME OVER</h2>
+        <div class="go-stats">
+          <div class="go-row">
+            <span>Score</span><span id="goScore" class="go-val">0</span>
+          </div>
+          <div class="go-row">
+            <span>High Score</span
+            ><span id="goHigh" class="go-val accent-purple">0</span>
+          </div>
+          <div class="go-row">
+            <span>Level Reached</span><span id="goLevel" class="go-val">1</span>
+          </div>
+          <div class="go-row">
+            <span>Survival Time</span><span id="goTime" class="go-val">0s</span>
+          </div>
+          <div class="go-row">
+            <span>Games Played</span><span id="goGames" class="go-val">0</span>
+          </div>
+        </div>
+        <div id="newHighBanner" class="new-high hidden">🏆 NEW HIGH SCORE!</div>
+        <button id="restartBtn" class="btn btn-primary">PLAY AGAIN</button>
+        <button id="menuBtn" class="btn btn-secondary">MAIN MENU</button>
+      </div>
+    </div>
+
+    <!-- LEVEL-UP NOTIFICATION -->
+    <div id="levelNotif" class="level-notif hidden">
+      LEVEL UP! <span id="levelNotifNum"></span>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
